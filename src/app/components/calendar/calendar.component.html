@@ -1,0 +1,25 @@
+<app-main-nav></app-main-nav>
+<!-- <h4> From {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h4> -->
+<section class="container-xl ">
+    <h6 *ngIf="dateBeginCal && dateEndCal">Calendar from {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h6>
+    <div class="table-responsive table-bordered">
+        <table id="calendar" class="table table-sm ">
+            <tr>
+                <th class="thead-light" scope="col" *ngFor="let date of dateArray">
+                    {{date.toDateString()}}
+                </th>
+            </tr>
+
+
+            <tr *ngFor="let colorProject of colorProjects">
+                <td *ngFor="let len of length">
+                    <button *ngIf="colorProject[len].id && colorProject[len].level==1" type="button" class="btn btn-lv1 btn-sm btn-block" (click)="onNavigate(colorProject[len])">Level {{colorProject[len].level}} <br>{{colorProject[len].name}}</button>
+                    <button *ngIf="colorProject[len].id && colorProject[len].level==2" type="button" class="btn btn-lv2 btn-sm btn-block" (click)="onNavigate(colorProject[len])">Level {{colorProject[len].level}} <br>{{colorProject[len].name}}</button>
+                    <button *ngIf="colorProject[len].id && colorProject[len].level==3" type="button" class="btn btn-lv3 btn-sm btn-block" (click)="onNavigate(colorProject[len])">Level {{colorProject[len].level}} <br>{{colorProject[len].name}}</button>
+                    <!-- <a href="/project" class="text-decoration-none">{{colorProject[len]}}</a> -->
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,46 @@
+<app-main-nav></app-main-nav>
+<div class="container">
+    <div class="row">
+        <div class='col-md-6 mx-auto'>
+            <div class="card-header">
+                <h4>{{title}}</h4>
+                <h5>{{message}}</h5>
+            </div>
+            <div class="card-body">
+                <form #ProjectCreateForm="ngForm" class="form-text">
+                    <div class="form-group align-center">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" placeholder="Project name" name="name" #name="ngModel" [(ngModel)]="project.name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label-sm">Description</label>
+                        <textarea class="form-control rounded-0" rows="3" name="description" #description="ngModel" [(ngModel)]="project.description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="begin_date">Begin date</label>
+                        <input type="date" class="form-control" name="begin_date" #begin_date="ngModel" [(ngModel)]="project.check_date.begin_date" />
+                    </div>
+                    <div class="form-group">
+                        <label for="end_date">End date</label>
+                        <input type="date" class="form-control" name="end_date" #end_date="ngModel" [(ngModel)]="project.check_date.end_date" />
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Project status</label>
+                        <select class="form-control" id="statusSelect">
+                            <option>Open</option>
+                            <option>In process</option>
+                            <option>Close</option>
+                            <option>Cancelled</option>
+                          </select>
+                    </div>
+                    <p>
+                        <button type="submit" class="btn btn-primary btn-sm btn-block" (click)="onSave(ProjectCreateForm)">Save</button>
+
+                        <button type="submit" class="btn btn-secondary btn-sm btn-block" (click)="onCancel()">Cancel</button>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

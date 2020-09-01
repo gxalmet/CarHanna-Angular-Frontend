@@ -1,0 +1,96 @@
+<app-main-nav></app-main-nav>
+<section>
+    <h4>My team</h4>
+</section>
+<div class="container">
+    <div class="row">
+        <div class='col-md-6 mx-auto'>
+            <div class="card-header">
+                <h4 *ngIf="title">{{title}}</h4>
+                <h5 *ngIf="message">{{message}}</h5>
+            </div>
+            <div class="card-body">
+                <form #CollegueCreateForm="ngForm" class="form-text">
+                    <div class="form-group align-center">
+                        <label for="name">Id</label>
+                        <input type="text" class="form-control" name="id" #id="ngModel" [(ngModel)]="team._id" *ngIf="team" />
+                    </div>
+                    <p>
+                        <button type="submit" class="btn btn-secondary btn-sm btn-block" (click)="onCancel()">Cancel</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Editable table -->
+<div class="card">
+    <h5 class="card-header text-center font-weight-bold text-uppercase py-4">My collegues</h5>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+            <span class="table-add float-left">
+                <a class="text-success" (click)="add()">
+                    
+                    <!-- <mat-icon fas icon="plus" size="2x"></mat-icon> -->
+                    <mat-icon>group_add</mat-icon>
+                </a>
+            </span>
+            <span class="table-add float-right ">
+                <a class="text-success" (click)="save(team)">
+                    
+                    <!-- <mat-icon fas icon="plus" size="2x"></mat-icon> -->
+                    <mat-icon>save</mat-icon>
+                </a>
+            </span>
+            <table *ngIf="team" class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                    <th class="text-center">E-mail</th>
+                    <th class="text-center">First Name</th>
+                    <th class="text-center">Lastname</th>
+                    <th class="text-center">User</th>
+                    <th class="text-center">Remove</th>
+                </tr>
+                <tr *ngFor="let collegue of team.collegues; let id = index">
+
+                    <td *ngIf="collegue.user_id_col==team.user_id">
+                        <span contenteditable="false" (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(id, 'email', $event)">{{collegue.email}}</span>
+                    </td>
+                    <td *ngIf="collegue.user_id_col!==team.user_id">
+                        <span contenteditable="true" (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(id, 'email', $event)">{{collegue.email}}</span>
+                    </td>
+
+                    <td *ngIf="collegue.user_id_col==team.user_id">
+                        <span contenteditable="false" (keyup)="changeValue(id, 'person.firstname', $event)" (blur)="updateList(id, 'person.firstname', $event)">{{collegue.person.firstname}}</span>
+                    </td>
+                    <td *ngIf="collegue.user_id_col!==team.user_id">
+                        <span contenteditable="true" (keyup)="changeValue(id, 'person.firstname', $event)" (blur)="updateList(id, 'person.firstname', $event)">{{collegue.person.firstname}}</span>
+                    </td>
+
+                    <td *ngIf="collegue.user_id_col==team.user_id">
+                        <span contenteditable="false" (keyup)="changeValue(id, 'person.lastname', $event)" (blur)="updateList(id, 'person.lastname', $event)">{{collegue.person.lastname}}</span>
+                    </td>
+                    <td *ngIf="collegue.user_id_col!==team.user_id">
+                        <span contenteditable="true" (keyup)="changeValue(id, 'person.lastname', $event)" (blur)="updateList(id, 'person.lastname', $event)">{{collegue.person.lastname}}</span>
+                    </td>
+
+                    <td>
+                        <a *ngIf="!(collegue.user_id_col)" class="text-success">
+                            <mat-icon>unpublished</mat-icon>
+                        </a>
+                        <a *ngIf="(collegue.user_id_col)" class="text-success">
+                            <mat-icon>verified_user</mat-icon>
+                        </a>
+                    </td>
+                    <td>
+                        <span *ngIf="collegue.user_id_col!==team.user_id" class="table-remove">
+                                <button type="button" mdbBtn color="danger" rounded="false" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+                        </span>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Editable table -->

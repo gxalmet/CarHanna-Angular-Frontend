@@ -1,0 +1,59 @@
+.btn-lv1,
+.btn-lv2,
+.btn-lv3,
+.btn-lv4,
+.btn-lv5 {
+    border-color: grey;
+}
+
+.btn-lv1 {
+    font-size: 15px;
+}
+
+.btn-lv2 {
+    font-size: 12px;
+}
+
+.btn-lv3 {
+    font-size: 9px;
+}
+
+.btn-lv4 {
+    font-size: 6px;
+}
+
+.btn-lv5 {
+    font-size: 3px;
+}
+
+.btn-lv1:hover {
+    border-color: black
+}
+
+.btn-lv1.focus,
+.btn-lv1:focus {
+    border-color: black
+}
+
+
+/* .btn-lv1.disabled,
+.btn-lv1:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.btn-lv1:not(:disabled):not(.disabled).active,
+.btn-lv1:not(:disabled):not(.disabled):active,
+.show>.btn-lv1.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf
+} */
+
+
+/* .btn-lv1:not(:disabled):not(.disabled).active:focus,
+.btn-lv1:not(:disabled):not(.disabled):active:focus,
+.show>.btn-lv1.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5)
+} */

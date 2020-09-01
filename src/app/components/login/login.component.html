@@ -1,0 +1,49 @@
+<app-main-nav></app-main-nav>
+
+<section class="row">
+    <div class="text-center container my-xl-auto">
+        <section class="container-xl">
+            <div class="container-fluid">
+                <h2>
+                    {{title}}
+                </h2>
+            </div>
+        </section>
+        <section class="container-xl" *ngIf="message">
+            <div class="container-fluid alert alert-danger" role="alert">
+                <h3>
+                    {{message}}
+                </h3>
+            </div>
+        </section>
+        <section class="container-sm">
+            <div class="container-fluid ">
+                <form #userCreateForm="ngForm" (ngSubmit)="onLogin(userCreateForm)" class="form-signin">
+                    <div class="form-group align-center">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="email" #email="ngModel" [(ngModel)]="user.email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" />
+                    </div>
+                    <p>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </p>
+
+                </form>
+
+            </div>
+
+
+
+        </section>
+
+
+
+    </div>
+
+
+</section>
+
+<!-- <script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwaauth/dist/pwa-auth.js"></script> -->
