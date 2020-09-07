@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         //response.user
         
         //var userid = response.user[0]._id;
-        console.log(response);
+        
         
         this._router.navigate( ['projects' ] );
         

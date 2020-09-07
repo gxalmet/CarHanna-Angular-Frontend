@@ -26,8 +26,7 @@ export class MainNavComponent implements OnInit {
   
   ngOnInit(): void {
     var token = localStorage.getItem('access_token');
-    console.log('token');
-    console.log(token);
+
     
     if(token){
       this._userService.getUserByToken().subscribe(

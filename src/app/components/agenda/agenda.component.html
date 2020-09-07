@@ -1,0 +1,129 @@
+<app-main-nav></app-main-nav>
+<!-- <h4> From {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h4> -->
+<section class="container-xl ">
+    <h6 *ngIf="dateBeginCal && dateEndCal">Agenda from {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h6>
+    <div class=" table ">
+        <table id="calendar" class=" table-striped ">
+            <tr>
+                <th class="thead-light" scope="col" *ngFor="let weekday of week">
+                    {{weekday}}
+                </th>
+            </tr>
+
+            <tr *ngFor="let agendaweek of agenda">
+
+                <td *ngFor="let number of numbers">
+                    <button type="button" class="btn btn-primary btn-sm btn-block">
+                        <!-- {{agendaweek[number].day.toDateString()}} -->
+                        {{agendaweek[number].day.getDate()}}-
+                        {{agendaweek[number].day.getMonth() + 1}}-
+                        {{agendaweek[number].day.getFullYear()}}
+                    </button>
+                    <card *ngFor="let projects of agendaweek[number].projects">
+                        <br>
+                        <button *ngIf="projects.level==1" type="button" class="btn btn-lv1 btn-sm btn-block" (click)="onNavigate(agendaweek[number].projects)">Level {{projects.level}} <br>{{projects.name}}</button>
+                        <br>
+                        <button *ngIf=" projects.level==2 " type="button " class="btn btn-lv2 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                        <br>
+                        <button *ngIf="projects.level==3 " type="button " class="btn btn-lv3 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                        <br>
+
+                    </card>
+
+                </td>
+
+            </tr>
+            <!-- <tr *ngFor="let agendaweek of agenda ">
+
+                <td colspan="7 " *ngFor="let number of numbers ">
+
+                    <card *ngFor="let projects of agendaweek[number].projects ">
+
+                        <button *ngIf="projects.level==1 " type="button " class="btn btn-lv1 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                        <br>
+                        <button *ngIf="projects.level==2 " type="button " class="btn btn-lv2 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                        <br>
+                        <button *ngIf="projects.level==3 " type="button " class="btn btn-lv3 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                        <br>
+
+                    </card>
+
+                </td>
+
+            </tr> -->
+
+
+            <!-- <tr>
+                    <td colspan="1 " *ngFor="let number of numbers ">
+                        <div *ngFor="let projects of agendaweek[number].projects ">
+
+                            <button *ngIf="projects.level==1 " type="button " class="btn btn-lv1 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                            <br>
+
+
+                            <button *ngIf="projects.level==2 " type="button " class="btn btn-lv2 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                            <br>
+                            <button *ngIf="projects.level==3 " type="button " class="btn btn-lv3 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                            <br>
+
+                        </div>
+                    </td>
+                </tr> -->
+
+
+            <!-- <td>
+                    <button type="button " class="btn btn-lv1 btn-sm btn-block ">{{agendaweek[0].day.toDateString()}}</button>
+
+                    <div *ngFor="let projects of agendaweek[0].projects ">
+                        <button type="button " class="btn btn-primary btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                        <br>
+                    </div>
+
+                </td>
+                <td>
+                    <button type="button " class="btn btn-lv1 btn-sm btn-block ">{{agendaweek[1].day.toDateString()}}</button>
+                    <div *ngFor="let projects of agendaweek[1].projects ">
+                        <button type="button " class="btn btn-primary btn-sm btn-block ">{{projects.name}}</button>
+                        <br>
+                    </div>
+                </td>
+                <td>
+                    <button type="button " class="btn btn-lv1 btn-sm btn-block ">{{agendaweek[2].day.toDateString()}}</button>
+                    <div *ngFor="let projects of agendaweek[2].projects ">
+                        <button type="button " class="btn btn-primary btn-sm btn-block ">{{projects.name}}</button>
+                        <br>
+                    </div>
+                </td>
+                <td>
+                    <button type="button " class="btn btn-lv1 btn-sm btn-block ">{{agendaweek[3].day.toDateString()}}</button>
+                    <div *ngFor="let projects of agendaweek[3].projects ">
+                        <button type="button " class="btn btn-primary btn-sm btn-block ">{{projects.name}}</button>
+                        <br>
+                    </div>
+                </td>
+                <td>
+                    <button type="button " class="btn btn-lv1 btn-sm btn-block ">{{agendaweek[4].day.toDateString()}}</button>
+                    <div *ngFor="let projects of agendaweek[4].projects ">
+                        <button type="button " class="btn btn-primary btn-sm btn-block ">{{projects.name}}</button>
+                        <br>
+                    </div>
+                </td>
+                <td>
+
+                    <button type="button " class="btn btn-lv1 btn-sm btn-block ">{{agendaweek[5].day.toDateString()}}</button>
+                    <div *ngFor="let projects of agendaweek[5].projects ">
+                        <button type="button " class="btn btn-primary btn-sm btn-block ">{{projects.name}}</button>
+                        <br>
+                    </div>
+                </td>
+                <td>
+                    <button type="button " class="btn btn-lv1 btn-sm btn-block ">{{agendaweek[6].day.toDateString()}}</button>
+                    <div *ngFor="let projects of agendaweek[6].projects ">
+                        <button type="button " class="btn btn-primary btn-sm btn-block ">{{projects.name}}</button>
+                        <br>
+                    </div>
+                </td> -->
+
+        </table>
+    </div>
+</section>

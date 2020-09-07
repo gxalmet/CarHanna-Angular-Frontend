@@ -138,7 +138,8 @@ export class ProjectsComponent implements OnInit {
   }
 
   onNavigate(project){
-    this._router.navigate( ['editproject/' + project._id ] );
+    //this._router.navigate( ['editproject/' + project._id ] );
+    this._router.navigate( ['editproject'], {queryParams: { id: project._id }, queryParamsHandling: 'merge'});
   }
   getChildren(node: ProjectTreeInt) { 
     

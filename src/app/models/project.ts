@@ -5,6 +5,7 @@ export class Project {
         public name: string,
         public description: string,
         public user_id : string,
+        public level: number,
         public check_date: {
             begin_date: Date,
             end_date: Date

@@ -8,7 +8,7 @@ export class AuthService {
 constructor(
   
 ) { 
-  console.log('Constructor');
+  
 }
 
 setLocalStorage(responseObj){

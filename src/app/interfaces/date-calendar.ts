@@ -2,6 +2,6 @@ export interface DateCalendar {
    
     id: String, 
     name: String, 
-    level: Number
-
+    level: Number,
+    colspan: number
 }

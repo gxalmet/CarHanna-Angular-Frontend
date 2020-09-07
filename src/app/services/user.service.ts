@@ -38,7 +38,7 @@ export class UserService{
         .pipe(
             map(result => { 
                 
-                console.log(result);
+                
                 this._authService.setLocalStorage(result);
                 //localStorage.setItem('access_token', result.token);
                 return true;

@@ -135,9 +135,11 @@
                             </mat-icon>
                         </button>
                         <button type="button " class="btn-head btn-sm btn-block" (click)="onNavigate(node.project) ">{{node.project.name}}</button>
-
+                        <br>
                         <button type="button " class="btn btn-field btn-sm btn-block"> {{node.project.check_date.begin_date.slice(0,10)}} </button>
+                        <br>
                         <button type="button " class="btn btn-field btn-sm btn-block"> {{node.project.check_date.end_date.slice(0,10)}} </button>
+                        <br>
                         <button type="button " class="btn btn-field btn-sm btn-block"> {{node.project.status}} </button>
 
 

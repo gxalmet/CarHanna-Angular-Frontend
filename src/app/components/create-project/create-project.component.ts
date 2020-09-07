@@ -48,6 +48,7 @@ export class CreateProjectComponent implements OnInit {
         '', 
         '', 
         '', 
+        0,
         { 'begin_date': new Date(),
           'end_date': new Date() }, 
         'Open', 

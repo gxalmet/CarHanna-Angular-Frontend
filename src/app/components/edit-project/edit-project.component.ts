@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { User } from '../../models/user';
 import { Project } from '../../models/project';
@@ -9,8 +9,9 @@ import { ProjectService } from '../../services/project.service';
 import { TeamService } from '../../services/team.service';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormControl, Validators  } from '@angular/forms';
-import * as moment from 'moment/moment';
+// import { FormControl, Validators  } from '@angular/forms';
+// import * as moment from 'moment/moment';
+// import { Subscription } from 'rxjs';
 
 export interface TeamListDropbox {
   id: string;
@@ -24,7 +25,9 @@ export interface TeamListDropbox {
   styleUrls: ['./edit-project.component.css'],
   providers: [ UserService, ProjectService, TeamService ]
 })
-export class EditProjectComponent implements OnInit {
+export class EditProjectComponent implements OnInit
+// , OnDestroy 
+{
 
   public title: String;
   public user: User;
@@ -38,6 +41,7 @@ export class EditProjectComponent implements OnInit {
   public teamList: TeamListDropbox[] = [];
   public teamSelected = [];
   public deleteButtonDisabled = false;
+  //public paramsSub: Subscription;
   
 
   constructor(
@@ -45,15 +49,28 @@ export class EditProjectComponent implements OnInit {
     private _teamService: TeamService,
   	private _router: Router,
   	private _route: ActivatedRoute
-  ) { }
+  ) { 
+    console.log('constructor');
+  }
 
   ngOnInit(): void {
-    this.columns = ["Name","Description","Begin date", "End date", "Status"];
 
-    this._route.params.subscribe(
-      params=>{
+    this._router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+
+    this.columns = ["Name","Description","Begin date", "End date", "Status"];
+    
+
+    console.log(this._route.snapshot.queryParams);
+    var id = this._route.snapshot.queryParamMap.get('id');
+    this._route.snapshot.queryParams = {};
+
+    // this._route.params.subscribe(
+    //   params=>{
         
-        this._projectService.getProject(params.id).subscribe(
+        //this._projectService.getProject(params.id).subscribe(
+        this._projectService.getProject(id).subscribe(
           responseR =>{
   
             this.message = responseR.message;
@@ -112,10 +129,15 @@ export class EditProjectComponent implements OnInit {
             this.message = errorC.error.message;
           }
         );
-      }
-    );
+    //   }
+    // );
 
   }
+//   public ngOnDestroy(): void {
+//     // Prevent memory leaks
+//     console.log('ngOnDestroy');
+//     this.paramsSub.unsubscribe();
+// }
 
   onSave(projectForm): void{
 
@@ -164,7 +186,10 @@ export class EditProjectComponent implements OnInit {
   
   }
   onNavigate(project){
-    this._router.navigate( ['editproject/' + project._id ] );
+    //this._router.navigate( ['editproject/' + project._id ] );
+    console.log(this._router);
+    
+    this._router.navigate( ['editproject' ], {queryParams: { id: project._id }} );
   }
   onCreateChildProject(project){
     this._router.navigate( ['createproject/' + project._id] );

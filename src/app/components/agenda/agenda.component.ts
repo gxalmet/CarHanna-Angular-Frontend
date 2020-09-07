@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 import { Project } from '../../models/project';
 import { ProjectTree } from '../../models/projectTree';
 
@@ -9,15 +10,32 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { transformProjectsTree } from '../../interfaces/transform.projects.tree';
 import { ProjectTreeInt } from '../../interfaces/project-tree-int';
 import { DateCalendar } from '../../interfaces/date-calendar';
+import * as moment from 'moment';
+
+
+
+export interface DayWeek {
+  day: Date, 
+  projects: Project[], 
+}
+export interface AgendaWeek {
+  0: DayWeek, 
+  1: DayWeek, 
+  2: DayWeek, 
+  3: DayWeek, 
+  4: DayWeek, 
+  5: DayWeek, 
+  6: DayWeek, 
+}
 
 @Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css'],
+  selector: 'app-agenda',
+  templateUrl: './agenda.component.html',
+  styleUrls: ['./agenda.component.css'],
   providers: [ ProjectService]
 })
 
-export class CalendarComponent implements OnInit {
+export class AgendaComponent implements OnInit {
   public title: String;
   public projects: Project[] = [];
   public projectsTree: ProjectTree[] = [];
@@ -30,6 +48,9 @@ export class CalendarComponent implements OnInit {
   public dateArray: Date[];
   public colorProjects: DateCalendar[];
   public length: any;
+  public week= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']  ;
+  public agenda: AgendaWeek[];
+  public numbers = [0,1,2,3,4,5,6];
 
   constructor(
     private _projectService: ProjectService,
@@ -43,6 +64,12 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
 
     this.getProjects();
+    
+    
+    
+    
+   
+    
 
   }
    getProjects(){
@@ -57,10 +84,8 @@ export class CalendarComponent implements OnInit {
         
         this.dateArray= this.getDates(this.dateBeginCal, this.dateEndCal);
         this.colorProjects = this.getDatesProjects(this.dateBeginCal, this.dateEndCal);
+        this.agenda = this.buildAgenda(this.dateBeginCal, this.dateEndCal);
         this.length = this.getLengthDynamic();
-        console.log(this.colorProjects);
-
-        
         
         
       },
@@ -102,7 +127,20 @@ export class CalendarComponent implements OnInit {
         return  dateA.getTime() - dateB.getTime();
       }
     );
-    this.dateBeginCal = new Date(projectBD[0].check_date.begin_date);
+
+    this.dateBeginCal = this.getMonday(new Date(projectBD[0].check_date.begin_date),false);
+  }
+   getMonday(d,op:boolean) {
+    var today = new Date(d);
+       
+    if(!op){
+      return ( new Date( moment(today).startOf('week').toDate()) );
+      
+    }else{
+      return ( new Date( moment(today).endOf('week').toDate()) );
+    }
+    
+    
   }
   getEndDate(){
     
@@ -115,7 +153,7 @@ export class CalendarComponent implements OnInit {
       }
     );
     
-    this.dateEndCal = new Date(projectED[this.projects.length-1].check_date.end_date);
+    this.dateEndCal = this.getMonday(new Date(projectED[this.projects.length-1].check_date.end_date), true);
   }
   getDates(beginDate: Date, endDate: Date){
        
@@ -123,6 +161,60 @@ export class CalendarComponent implements OnInit {
           arr.push(new Date(dt));
       }
       return arr;
+
+  }
+  buildAgenda(beginDate: Date, endDate: Date){
+       
+    var daynull = { day: null, projects: [] };
+
+    var item: AgendaWeek = {
+      0: daynull,
+      1: daynull,
+      2: daynull,
+      3: daynull,
+      4: daynull, 
+      5: daynull,
+      6: daynull,
+    };
+
+    var arr1: AgendaWeek[] = [];
+
+    // Primero se calculan los dias que aplican a cada semana
+    for( var dt=new Date(beginDate); dt<=endDate; dt.setDate(dt.getDate()+1)){
+      
+      item[dt.getDay()] = { day: new Date(dt), projects: [] };
+      
+      if(dt.getDay()==6){
+        
+        arr1.push(item);
+        item = {
+          0: daynull,
+          1: daynull,
+          2: daynull,
+          3: daynull,
+          4: daynull, 
+          5: daynull,
+          6: daynull,
+        };
+      }
+      
+    }
+    
+    arr1.forEach(arrItem=>{
+      
+      for(var i=0; i<7; i++){
+        this.projects.forEach(projectItem=>{
+          
+          if(new Date(arrItem[i].day) >= new Date(projectItem.check_date.begin_date) &&
+             new Date(arrItem[i].day) <= new Date(projectItem.check_date.end_date) ){
+            arrItem[i].projects.push(projectItem);
+          }
+        });
+      };
+    });
+    
+    
+    return arr1;
 
   }
   getDatesProjects(beginDate: Date, endDate: Date){
@@ -143,48 +235,13 @@ export class CalendarComponent implements OnInit {
 
     var dateCalendarArr = [];
     // projectLevel.forEach(project=>{
-    // treeArr.forEach(project=>{
-      
-    //   var i = 0;
-    //   var item: DateCalendar[]= [];
-    //   this.dateArray.forEach(date=>{
-    //     item[i]= this.fillItemDate(project.project, date, project.level);      
-    //     i++;
-    //   });
-    //   dateCalendarArr.push(item);
-
-    //   project.children.forEach(childLv1=>{
-    //     var j = 0
-    //     item = [];
-    //     this.dateArray.forEach(date=>{
-    //       item[j]= this.fillItemDate(childLv1.project, date, childLv1.level);
-    //       j++;
-    //     });
-    //     dateCalendarArr.push(item);
-
-    //     childLv1.children.forEach(childLv2=>{
-    //       var k = 0
-    //       item = [];
-    //       this.dateArray.forEach(date=>{
-    //         item[k]= this.fillItemDate(childLv2.project, date, childLv2.level);
-    //         k++;
-    //       });
-    //       dateCalendarArr.push(item);
-    //     })
-    //   })
-
-    // });
-
     treeArr.forEach(project=>{
       
       var i = 0;
       var item: DateCalendar[]= [];
       this.dateArray.forEach(date=>{
-        if(new Date(date).getTime() <= new Date(project.project.check_date.begin_date).getTime() 
-        || new Date(date).getTime() >  new Date(project.project.check_date.end_date).getTime() ){
         item[i]= this.fillItemDate(project.project, date, project.level);      
         i++;
-        }
       });
       dateCalendarArr.push(item);
 
@@ -192,12 +249,8 @@ export class CalendarComponent implements OnInit {
         var j = 0
         item = [];
         this.dateArray.forEach(date=>{
-          if(new Date(date).getTime() <= new Date(childLv1.project.check_date.begin_date).getTime() 
-          || new Date(date).getTime() >  new Date(childLv1.project.check_date.end_date).getTime() ){
-            item[j]= this.fillItemDate(childLv1.project, date, childLv1.level);
-            j++;
-          }
-
+          item[j]= this.fillItemDate(childLv1.project, date, childLv1.level);
+          j++;
         });
         dateCalendarArr.push(item);
 
@@ -205,19 +258,14 @@ export class CalendarComponent implements OnInit {
           var k = 0
           item = [];
           this.dateArray.forEach(date=>{
-            if(new Date(date).getTime() <= new Date(childLv2.project.check_date.begin_date).getTime() 
-            || new Date(date).getTime() >  new Date(childLv2.project.check_date.end_date).getTime() ){
-              item[k]= this.fillItemDate(childLv2.project, date, childLv2.level);
-              k++;
-            }
+            item[k]= this.fillItemDate(childLv2.project, date, childLv2.level);
+            k++;
           });
           dateCalendarArr.push(item);
         })
       })
 
     });
-
-    //console.log(dateCalendarArr);
 
     return dateCalendarArr;
   
@@ -228,20 +276,16 @@ export class CalendarComponent implements OnInit {
 
     obj_local = {id: '', name: '', level: 0, colspan: 0};
 
-    
-
-    if( (new Date(date).getTime() == new Date(project.check_date.begin_date).getTime() ) ){
-      obj_local['id'] =  project._id.toString();
-      obj_local['name'] = project.name;
-      obj_local['level'] = level;
-      obj_local['colspan'] = ((new Date(project.check_date.end_date).getTime()-new Date(project.check_date.begin_date).getTime())/(1000 * 3600 * 24)) + 1;
+    if(date < new Date(project.check_date.begin_date) || date > new Date(project.check_date.end_date)){
       // obj[index]=  {id: '', name: '', level: 0};
       // obj_local['id']=  '';
       // obj_local['name']=   '';
       // obj_local['level']=   0;
     }else{
       // obj[index]= { id: project._id, name: project.name, level: level};
-      
+      obj_local['id'] =  project._id.toString();
+      obj_local['name'] = project.name;
+      obj_local['level'] = level;
     }
     return obj_local;
   }
@@ -272,3 +316,4 @@ export class CalendarComponent implements OnInit {
      this._router.navigate( ['editproject'], { queryParams: { id: colorProject.id}} );
   }
 }
+

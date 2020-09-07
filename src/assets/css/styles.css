@@ -37,12 +37,12 @@ body {
     max-width: 330px;
     padding: 15px; */
     margin: auto;
-    font-size: xx-small;
+    font-size: small;
 }
 
 th {
     font-family: "Montserrat-Light";
-    font-size: x-small;
+    font-size: small;
 }
 
 td,
@@ -56,6 +56,87 @@ td,
     background-color: yellowgreen;
 }
 
+table {
+    border-collapse: separate;
+    padding-right: 10 px;
+}
+
 .table-responsive {
     font-family: "Montserrat-Light";
+}
+
+.th-table {
+    text-align: center;
+    font-size: xx-small;
+    width: 600px;
+}
+
+th,
+td {
+    width: 100px;
+    overflow: hidden;
+}
+
+
+/* Texts used in HOME PAGE */
+
+.p,
+.cite:hover {
+    text-decoration-line: none;
+}
+
+.text-initial {
+    font-family: "Montserrat-Light";
+    font-size: small;
+    text-align: justify;
+    text-decoration-line: none;
+}
+
+.text-quote {
+    font-family: "Montserrat-Light";
+    font-size: small;
+    text-align: justify;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-style: oblique;
+    text-decoration-line: none;
+}
+
+.cite {
+    font-family: "Montserrat-Light";
+    font-size: small;
+    text-align: justify;
+    text-decoration-line: none;
+}
+
+.home-link {
+    font-family: "Montserrat-Light";
+    font-size: small;
+    color: grey;
+    text-decoration-line: none;
+}
+
+.home-link :hover {
+    color: black;
+    text-decoration-line: none;
+}
+
+.text-initial-li {
+    font-family: "Montserrat-Light";
+    font-size: small;
+    text-align: left;
+    text-decoration-line: none;
+    color: grey;
+}
+
+.text-initial-li :hover {
+    color: black;
+    text-decoration-line: none;
+}
+
+.a:hover,
+.cite:hover,
+.p:hover,
+.strong:hover {
+    text-decoration-line: none;
 }

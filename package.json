@@ -27,6 +27,7 @@
     "@ng-select/ng-select": "^5.0.1",
     "angular-bootstrap-grid-tree": "^0.4.0",
     "bootstrap": "^4.5.0",
+    "date-fns": "^2.16.1",
     "jquery": "^3.5.1",
     "material-design-icons": "^3.0.1",
     "moment": "^2.27.0",

@@ -1,0 +1,11 @@
+.fa-user-check,
+.fa-sign-out,
+.nav-link-dropdown,
+.dropdown-menu,
+.dropdown-menu-right,
+.dropdown-secondary,
+.navbar-dark,
+.navbar-nav,
+.nav-link .show {
+    color: grey;
+}

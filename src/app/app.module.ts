@@ -23,12 +23,14 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { AgendaComponent } from './components/agenda/agenda.component';
 
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
 import { MyTeamComponent } from './components/my-team/my-team.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { environment } from '../environments/environment';
     MainNavComponent,
     CalendarComponent,
     EditProjectComponent,
-    MyTeamComponent
+    MyTeamComponent,
+    AgendaComponent
   ],
   imports: [
     BrowserModule,

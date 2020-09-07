@@ -29,15 +29,13 @@
 
 .btn-field {
     font-size: 11px;
-    background-color: rgb(207, 207, 207);
+    background-color: lightblue;
 }
 
 .btn-head:hover {
     border-color: rgb(207, 207, 207);
-    ;
 }
 
-.btn-head.focus,
 .btn-head:focus {
     border-color: rgb(207, 207, 207);
 }

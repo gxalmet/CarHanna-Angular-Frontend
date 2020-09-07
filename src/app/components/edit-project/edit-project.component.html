@@ -24,6 +24,10 @@
             <div class="card-body" *ngIf="project">
                 <form #ProjectCreateForm="ngForm" class="form-text">
                     <div class="form-group align-center ">
+                        <label for="level" class="col-form-label-sm">Level {{project.level}}</label>
+
+                    </div>
+                    <div class="form-group align-center ">
                         <label for="name" class="col-form-label-sm">Name</label>
                         <input type="text" class="form-control" placeholder="Project name" name="name" #name="ngModel" [(ngModel)]="project.name" />
                     </div>
