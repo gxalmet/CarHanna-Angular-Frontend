@@ -1,8 +1,15 @@
 <app-main-nav></app-main-nav>
 <!-- <h4> From {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h4> -->
+<section class="container-xl" *ngIf="message">
+    <div class="container-fluid alert alert-danger" role="alert">
+        <h3>
+            {{message}}
+        </h3>
+    </div>
+</section>
 <section class="container-fluid">
     <h6 *ngIf="dateBeginCal && dateEndCal">Calendar from {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h6>
-    <div class="table">
+    <div *ngIf="dateBeginCal && dateEndCal" class="table">
         <table id="calendar" class="table table-responsive-lg table-bordered">
             <tr class="">
 

@@ -14,11 +14,11 @@ import { EditProjectComponent } from './components/edit-project/edit-project.com
 import { MyTeamComponent } from './components/my-team/my-team.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
 
-export const resolver = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  console.log('hero');
-  console.log(route);
-  console.log(state);
-}
+// export const resolver = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+//   console.log('hero');
+//   console.log(route);
+//   console.log(state);
+// }
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -41,7 +41,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes , {onSameUrlNavigation: 'reload'} ) ],
+  imports: [RouterModule.forRoot(routes ) ],
+  //imports: [RouterModule.forRoot(routes , {onSameUrlNavigation: 'reload'} ) ],
   exports: [RouterModule],
   // providers: [
   //   {

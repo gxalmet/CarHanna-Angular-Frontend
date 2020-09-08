@@ -65,7 +65,7 @@ export class AgendaComponent implements OnInit {
 
     this.getProjects();
     
-    
+    console.log(this.agenda);
     
     
    
@@ -76,7 +76,8 @@ export class AgendaComponent implements OnInit {
     
     this._projectService.getProjects(null).subscribe(
       responseP =>{
-                
+        
+        console.log(responseP.projects);
         this.projects = this.projectsUse = responseP.projects;
         
         this.getBeginDate();
@@ -86,12 +87,15 @@ export class AgendaComponent implements OnInit {
         this.colorProjects = this.getDatesProjects(this.dateBeginCal, this.dateEndCal);
         this.agenda = this.buildAgenda(this.dateBeginCal, this.dateEndCal);
         this.length = this.getLengthDynamic();
+
+        console.log(this.agenda);
         
         
       },
       errorP => {
         
-  
+        console.log(errorP)
+        this.message = errorP.message;
         
       }
     )
@@ -128,7 +132,11 @@ export class AgendaComponent implements OnInit {
       }
     );
 
-    this.dateBeginCal = this.getMonday(new Date(projectBD[0].check_date.begin_date),false);
+    if(projectBD[0]){
+      this.dateBeginCal = new Date(projectBD[0].check_date.begin_date);
+    }else{
+      this.dateBeginCal = new Date();
+    }
   }
    getMonday(d,op:boolean) {
     var today = new Date(d);
@@ -153,7 +161,13 @@ export class AgendaComponent implements OnInit {
       }
     );
     
-    this.dateEndCal = this.getMonday(new Date(projectED[this.projects.length-1].check_date.end_date), true);
+    //this.dateEndCal = this.getMonday(new Date(projectED[this.projects.length-1].check_date.end_date), true);
+    if(projectED[this.projects.length-1]){
+      this.dateEndCal = new Date(this.getMonday(new Date(projectED[this.projects.length-1].check_date.end_date), true));
+    }else{
+      this.dateEndCal = new Date();
+      this.dateEndCal = new Date(this.getMonday(new Date(this.dateEndCal.getDate() + 30), true));
+    }
   }
   getDates(beginDate: Date, endDate: Date){
        
@@ -311,9 +325,10 @@ export class AgendaComponent implements OnInit {
 
     return arrLengt;
   }
-  onNavigate(colorProject){
+  onNavigate(Project){
      //this._router.navigate( ['editproject/' + colorProject.id ] );
-     this._router.navigate( ['editproject'], { queryParams: { id: colorProject.id}} );
+     console.log(Project);
+     this._router.navigate( ['editproject'], { queryParams: { id: Project._id}} );
   }
 }
 

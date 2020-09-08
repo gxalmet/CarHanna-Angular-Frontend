@@ -35,6 +35,10 @@
     border-color: black
 }
 
+.th {
+    width: 150px;
+}
+
 
 /* .btn-lv1.disabled,
 .btn-lv1:disabled {

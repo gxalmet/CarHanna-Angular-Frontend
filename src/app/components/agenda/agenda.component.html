@@ -1,10 +1,24 @@
 <app-main-nav></app-main-nav>
 <!-- <h4> From {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h4> -->
+<section class="container-xl">
+    <div class="container-fluid">
+        <h2>
+            {{title}}
+        </h2>
+    </div>
+</section>
+<section class="container-xl" *ngIf="message">
+    <div class="container-fluid alert alert-danger" role="alert">
+        <h3>
+            {{message}}
+        </h3>
+    </div>
+</section>
 <section class="container-xl ">
     <h6 *ngIf="dateBeginCal && dateEndCal">Agenda from {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h6>
     <div class=" table ">
-        <table id="calendar" class=" table-striped ">
-            <tr>
+        <table id="calendar" class=" table-striped table-responsive-lg">
+            <tr class="">
                 <th class="thead-light" scope="col" *ngFor="let weekday of week">
                     {{weekday}}
                 </th>
@@ -13,22 +27,25 @@
             <tr *ngFor="let agendaweek of agenda">
 
                 <td *ngFor="let number of numbers">
-                    <button type="button" class="btn btn-primary btn-sm btn-block">
-                        <!-- {{agendaweek[number].day.toDateString()}} -->
-                        {{agendaweek[number].day.getDate()}}-
+                    <div>
+                        <button type="button" class="btn btn-dark btn-sm btn-block">
+                         {{agendaweek[number].day.toDateString().slice(3,15)}} 
+                        <!-- {{agendaweek[number].day.getDate()}}-
                         {{agendaweek[number].day.getMonth() + 1}}-
-                        {{agendaweek[number].day.getFullYear()}}
+                        {{agendaweek[number].day.getFullYear()}} -->
                     </button>
-                    <card *ngFor="let projects of agendaweek[number].projects">
+                    </div>
+                    <div *ngFor="let project of agendaweek[number].projects">
+
                         <br>
-                        <button *ngIf="projects.level==1" type="button" class="btn btn-lv1 btn-sm btn-block" (click)="onNavigate(agendaweek[number].projects)">Level {{projects.level}} <br>{{projects.name}}</button>
-                        <br>
-                        <button *ngIf=" projects.level==2 " type="button " class="btn btn-lv2 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
-                        <br>
-                        <button *ngIf="projects.level==3 " type="button " class="btn btn-lv3 btn-sm btn-block ">Level {{projects.level}} <br>{{projects.name}}</button>
+                        <button *ngIf="project.level==1" type="button" class="btn btn-lv1 btn-sm btn-block" (click)="onNavigate(project)">Level {{project.level}} <br>{{project.name}}</button>
+
+                        <button *ngIf=" project.level==2 " type="button " class="btn btn-lv2 btn-sm btn-block" (click)="onNavigate(project)">Level {{project.level}} <br>{{project.name}}</button>
+
+                        <button *ngIf="project.level==3 " type="button " class="btn btn-lv3 btn-sm btn-block" (click)="onNavigate(project)">Level {{project.level}} <br>{{project.name}}</button>
                         <br>
 
-                    </card>
+                    </div>
 
                 </td>
 

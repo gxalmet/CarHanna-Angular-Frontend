@@ -52,8 +52,14 @@ export class MainNavComponent implements OnInit {
         }
       )
     }else{
-      if(this._router.url== '/home' || this._router.url== '/login' || this._router.url== '/register' ){}
-      else{this._router.navigate( ['login' ] );}
+      if(this._router.url== '/home' 
+      || this._router.url== '/' 
+      || this._router.url== '/login' 
+      || this._router.url== '/register' ){
+
+      }else{
+        this._router.navigate( ['login' ] );
+      }
       
     }
   }

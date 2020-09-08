@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   public title: String;
   public user: User;
   public message: String;
+  public nav: boolean;
   public formControl: FormControl;
 
   constructor(
@@ -27,6 +28,7 @@ export class RegisterComponent implements OnInit {
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]);
 
     this.title = 'Sign Up';
+    this.nav = false;
 
     this.user = new User( ' ', {firstname: '', lastname:''}, '', '' );
   }
@@ -34,8 +36,12 @@ export class RegisterComponent implements OnInit {
    
     this._userService.createUser(this.user).subscribe(
       response =>{
+        this.nav = true;
         this.message = response.message;
-        this._router.navigate( ['login' ] );
+
+        
+
+        //this._router.navigate( ['login' ] );
       },
       error=> {
         

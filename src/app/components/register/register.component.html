@@ -8,11 +8,14 @@
                     {{title}}
                 </h2>
             </div>
-            <div class="container-fluid">
-                <h3>
-                    {{message}}
-                </h3>
-            </div>
+            <section class="container-xl" *ngIf="message">
+                <div class="container-fluid alert alert-danger" role="alert">
+                    <h3>
+                        {{message}}
+                        <a *ngIf="nav" routerLink="/login" routerLinkActive="active"><strong>Sign-in</strong></a>
+                    </h3>
+                </div>
+            </section>
         </section>
         <section class="">
 

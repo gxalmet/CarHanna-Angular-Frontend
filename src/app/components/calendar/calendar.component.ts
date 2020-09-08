@@ -86,7 +86,7 @@ export class CalendarComponent implements OnInit {
         
       },
       errorP => {
-        
+        this.message = errorP.message;
   
         
       }
@@ -102,7 +102,13 @@ export class CalendarComponent implements OnInit {
         return  dateA.getTime() - dateB.getTime();
       }
     );
-    this.dateBeginCal = new Date(projectBD[0].check_date.begin_date);
+    if(projectBD[0]){
+      this.dateBeginCal = new Date(projectBD[0].check_date.begin_date);
+    }else{
+      this.dateBeginCal = new Date();
+    }
+    
+    console.log(this.dateBeginCal);
   }
   getEndDate(){
     
@@ -114,8 +120,13 @@ export class CalendarComponent implements OnInit {
         return  dateA.getTime() - dateB.getTime();
       }
     );
+    if(projectED[this.projects.length-1]){
+      this.dateEndCal = new Date(projectED[this.projects.length-1].check_date.end_date);
+    }else{
+      this.dateEndCal = new Date();
+      this.dateEndCal.setDate(this.dateEndCal.getDate()+30);
+    }
     
-    this.dateEndCal = new Date(projectED[this.projects.length-1].check_date.end_date);
   }
   getDates(beginDate: Date, endDate: Date){
        
