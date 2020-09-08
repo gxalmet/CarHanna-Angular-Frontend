@@ -133,9 +133,9 @@ export class AgendaComponent implements OnInit {
     );
 
     if(projectBD[0]){
-      this.dateBeginCal = new Date(projectBD[0].check_date.begin_date);
+      this.dateBeginCal = new Date(this.getMonday((projectBD[0].check_date.begin_date), false));
     }else{
-      this.dateBeginCal = new Date();
+      this.dateBeginCal = new Date(this.getMonday((new Date()), false));
     }
   }
    getMonday(d,op:boolean) {

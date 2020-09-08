@@ -13,8 +13,9 @@
         <table id="calendar" class="table table-responsive-lg table-bordered">
             <tr class="">
 
-                <th class="th-table" scope="col" *ngFor="let date of dateArray">
-                    {{date.toDateString()}}
+                <th class="th-cust" scope="col" *ngFor="let date of dateArray">
+                    <!-- {{date.toDateString()}} -->
+                    <p class="th-cust" *ngIf="date">{{date.toDateString().slice(3,15)}}</p>
                 </th>
                 <th></th>
             </tr>

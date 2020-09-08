@@ -26,14 +26,14 @@
 
             <tr *ngFor="let agendaweek of agenda">
 
-                <td *ngFor="let number of numbers">
+                <td *ngFor="let number of numbers" class="td-cust">
                     <div>
                         <button type="button" class="btn btn-dark btn-sm btn-block">
-                         {{agendaweek[number].day.toDateString().slice(3,15)}} 
+                         <p *ngIf="agendaweek[number].day">{{agendaweek[number].day.toDateString().slice(3,15)}}</p> 
                         <!-- {{agendaweek[number].day.getDate()}}-
                         {{agendaweek[number].day.getMonth() + 1}}-
                         {{agendaweek[number].day.getFullYear()}} -->
-                    </button>
+                        </button>
                     </div>
                     <div *ngFor="let project of agendaweek[number].projects">
 

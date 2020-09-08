@@ -35,6 +35,11 @@
     border-color: black
 }
 
+.th-cust {
+    width: 58px;
+    font-size: xx-small;
+}
+
 
 /* .btn-lv1.disabled,
 .btn-lv1:disabled {
