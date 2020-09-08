@@ -63,13 +63,15 @@ export class UserService{
     }
     getUserByToken(): Observable<any>{
         //var token = localStorage.getItem('access_token');
-        let headers = new HttpHeaders({ 'content-type':'application/json', 
-                                        'Access-Control-Allow-Origin':'*',
-                                        'Access-Control-Allow-Methods':'*'
-                                        //'Authorization': 'Bearer ' + token
-                                     });
+
+        let headers = new HttpHeaders(
+            { 'content-type':'application/json', 
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Methods':'*' });
+
+        return this._http.get(this.url+'/getuserbytoken', {headers: headers});
+ 
         
-		return this._http.get(this.url+'/getuserbytoken', {headers: headers});
     }
 
     public get loggedIn(): boolean {

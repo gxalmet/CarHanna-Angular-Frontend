@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User} from '../../models/user';
 import { UserService} from '../../services/user.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AuthService} from '../../services/Auth.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -20,15 +21,14 @@ export class MainNavComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _router: Router,
+    private _authService: AuthService,
   ) { 
     this.userValid = false;
   }
   
   ngOnInit(): void {
-    var token = localStorage.getItem('access_token');
 
-    
-    if(token){
+    if(this._authService.loggedIn()){
       this._userService.getUserByToken().subscribe(
         response =>{
           

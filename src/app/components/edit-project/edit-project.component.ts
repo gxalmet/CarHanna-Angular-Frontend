@@ -50,7 +50,7 @@ export class EditProjectComponent implements OnInit
   	private _router: Router,
   	private _route: ActivatedRoute
   ) { 
-    console.log('constructor');
+    
   }
 
   ngOnInit(): void {
@@ -62,7 +62,7 @@ export class EditProjectComponent implements OnInit
     this.columns = ["Name","Description","Begin date", "End date", "Status"];
     
 
-    console.log(this._route.snapshot.queryParams);
+    
     var id = this._route.snapshot.queryParamMap.get('id');
     this._route.snapshot.queryParams = {};
 
@@ -129,15 +129,9 @@ export class EditProjectComponent implements OnInit
             this.message = errorC.error.message;
           }
         );
-    //   }
-    // );
+
 
   }
-//   public ngOnDestroy(): void {
-//     // Prevent memory leaks
-//     console.log('ngOnDestroy');
-//     this.paramsSub.unsubscribe();
-// }
 
   onSave(projectForm): void{
 
@@ -187,7 +181,7 @@ export class EditProjectComponent implements OnInit
   }
   onNavigate(project){
     //this._router.navigate( ['editproject/' + project._id ] );
-    console.log(this._router);
+    
     
     this._router.navigate( ['editproject' ], {queryParams: { id: project._id }} );
   }

@@ -58,10 +58,7 @@ export class CalendarComponent implements OnInit {
         this.dateArray= this.getDates(this.dateBeginCal, this.dateEndCal);
         this.colorProjects = this.getDatesProjects(this.dateBeginCal, this.dateEndCal);
         this.length = this.getLengthDynamic();
-        console.log(this.colorProjects);
-
-        
-        
+            
         
       },
       errorP => {
@@ -108,7 +105,7 @@ export class CalendarComponent implements OnInit {
       this.dateBeginCal = new Date();
     }
     
-    console.log(this.dateBeginCal);
+    
   }
   getEndDate(){
     
@@ -227,8 +224,6 @@ export class CalendarComponent implements OnInit {
       })
 
     });
-
-    //console.log(dateCalendarArr);
 
     return dateCalendarArr;
   

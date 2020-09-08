@@ -65,19 +65,13 @@ export class AgendaComponent implements OnInit {
 
     this.getProjects();
     
-    console.log(this.agenda);
-    
-    
-   
-    
-
   }
    getProjects(){
     
     this._projectService.getProjects(null).subscribe(
       responseP =>{
         
-        console.log(responseP.projects);
+        
         this.projects = this.projectsUse = responseP.projects;
         
         this.getBeginDate();
@@ -88,13 +82,11 @@ export class AgendaComponent implements OnInit {
         this.agenda = this.buildAgenda(this.dateBeginCal, this.dateEndCal);
         this.length = this.getLengthDynamic();
 
-        console.log(this.agenda);
-        
         
       },
       errorP => {
         
-        console.log(errorP)
+        
         this.message = errorP.message;
         
       }
@@ -327,7 +319,7 @@ export class AgendaComponent implements OnInit {
   }
   onNavigate(Project){
      //this._router.navigate( ['editproject/' + colorProject.id ] );
-     console.log(Project);
+     
      this._router.navigate( ['editproject'], { queryParams: { id: Project._id}} );
   }
 }
