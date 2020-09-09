@@ -9,14 +9,16 @@ import { ProjectService } from '../../services/project.service';
 import { TeamService } from '../../services/team.service';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Global} from '../../services/global';
 // import { FormControl, Validators  } from '@angular/forms';
 // import * as moment from 'moment/moment';
 // import { Subscription } from 'rxjs';
 
-export interface TeamListDropbox {
+export interface ListDropbox {
   id: string;
   name: string;
 }
+
 
 
 @Component({
@@ -38,11 +40,12 @@ export class EditProjectComponent implements OnInit
   public columns: String[];
   public team: Team;
   
-  public teamList: TeamListDropbox[] = [];
+  public teamList: ListDropbox[] = [];
   public teamSelected = [];
   public deleteButtonDisabled = false;
   //public paramsSub: Subscription;
-  
+  public statusList: ListDropbox[] = [];
+  public statusSelected = [];
 
   constructor(
     private _projectService: ProjectService,
@@ -65,6 +68,13 @@ export class EditProjectComponent implements OnInit
     
     var id = this._route.snapshot.queryParamMap.get('id');
     this._route.snapshot.queryParams = {};
+
+    this.statusList = Global.status;
+
+    // this.statusList.push( { 'id': 'E0001', 'name': 'Open'} );
+    // this.statusList.push( { 'id': 'E0002', 'name': 'In process'} );
+    // this.statusList.push( { 'id': 'E0003', 'name': 'Close'} );
+    // this.statusList.push( { 'id': 'E0004', 'name': 'Cancel'} );
 
     // this._route.params.subscribe(
     //   params=>{
@@ -134,6 +144,7 @@ export class EditProjectComponent implements OnInit
   }
 
   onSave(projectForm): void{
+
 
     this.teamSelected.forEach((sel,i)=>{
       if(i==0){

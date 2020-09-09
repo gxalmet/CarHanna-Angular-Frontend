@@ -5,7 +5,7 @@
             <div *ngIf="message" class="alert alert-warning" role="alert">
                 <h5>{{message}}</h5>
             </div>
-            <div class="card-header">
+            <div *ngIf="title" class="card-header">
                 <h4>{{title}}</h4>
             </div>
 
@@ -43,41 +43,26 @@
                         <label for="end_date" class="col-form-label-sm">End date</label>
                         <input type="date" class="form-control" name="end_date" #end_date="ngModel" [(ngModel)]="project.check_date.end_date" />
                     </div>
-                    <!-- <form #ProjectCreateFormTeam="ngForm" class="form-text">
-                        <div class="form-group align-items-center">
-                            <label for="status" class="col-form-label-sm">Team</label>
-                            <ng-select class="ng-select ng-select-multiple" [(ngModel)]="teamSelected" name="name">
-                                <ng-option class="ng-input" *ngFor="let team of teamList" [value]="team.id">{{team.name}}</ng-option>
-
-                            </ng-select>
-                        </div>
-                    </form> -->
 
 
-
-                    <!-- <ng-select [items]="teamList" [multiple]="true" [closeOnSelect]="false" [searchable]="false" bindLabel="name" placeholder="Select people" [(ngModel)]="teamSelected" name="name">
-                        <ng-option class="ng-input" *ngFor="let team of teamList" [value]="team.id">{{team.name}}</ng-option>
-                    </ng-select> -->
-
-                    <!-- <div class="mt-3">
-                        Selected value: <br/>
-                        <ul>
-                            <li *ngFor="let item of teamSelected">{{item.name}}</li>
-                        </ul>
-                        <button (click)="clearModel()" class="btn btn-secondary btn-sm">Clear model</button>
-                        <button (click)="changeModel()" class="btn btn-secondary btn-sm">Change model</button>
+                    <!-- <div class="form-group" *ngIf="statusList.length>0">
+                        <label for="status" class="col-form-label-sm">Project Status</label>
+                        <ng-select class="ng-select" [items]="statusList" [multiple]="false" bindLabel="name" [closeOnSelect]="true" bindValue="id" [(ngModel)]="statusSelected">
+                            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" /> {{item.name}}
+                            </ng-template>
+                        </ng-select>
                     </div> -->
-
-
 
                     <div class="form-group">
                         <label for="status" class="col-form-label-sm">Project status</label>
-                        <select class="form-control" id="statusSelect">
-                            <option>Open</option>
+                        <select class="form-control" id="statusSelect" name="statusList" [(ngModel)]="project.status">
+                            <option *ngFor="let duration of statusList" [value]="duration.id">{{duration.name}}</option> 
+                            <!-- <option>Open</option>
                             <option>In process</option>
                             <option>Close</option>
-                            <option>Cancelled</option>
-                          </select>
+                            <option>Cancelled</option> -->
+                        </select>
                     </div>
 
                     <p>

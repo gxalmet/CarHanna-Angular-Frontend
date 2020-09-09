@@ -12,6 +12,8 @@ import { ConstantPool } from '@angular/compiler';
 
 import { transformProjectsTree } from '../../interfaces/transform.projects.tree';
 import { ProjectTreeInt } from '../../interfaces/project-tree-int';
+import { Global } from '../../services/global';
+import { global } from '@angular/compiler/src/util';
 
 
 @Component({
@@ -31,6 +33,7 @@ export class ProjectsComponent implements OnInit {
   public lastname: String;
   public columns: String[];
   public index: String[];
+  public statusList = Global.status;
 
   public nestedTreeControl: NestedTreeControl<ProjectTreeInt>;
   public nestedDataSource: MatTreeNestedDataSource<ProjectTreeInt>;
@@ -48,7 +51,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log(this.statusList);
 
     this.title = 'Welcome to your project management!!'
     
@@ -95,6 +98,15 @@ export class ProjectsComponent implements OnInit {
     
     if(this.projects){
       projectsread = this.projects.slice(0, this.projects.length);
+      projectsread.forEach(pro=>{
+        pro.check_date.begin_date = new Date(pro.check_date.begin_date);
+        pro.check_date.end_date = new Date(pro.check_date.end_date);
+        this.statusList.map((stat,i) => {
+          if(pro.status == stat.id){
+            pro.status = stat.name;
+          }
+        })
+      })
 
       var tranform = new transformProjectsTree;
   
@@ -147,5 +159,13 @@ export class ProjectsComponent implements OnInit {
   }
   hasNestedChild(_: number, nodeData: ProjectTreeInt) {
     return  nodeData ; 
+  }
+  getTextStatus(id:String){
+    
+    this.statusList.map((stat,i) => {
+      if(id == stat.id){
+        return stat.name;
+      }
+    })
   }
 }
