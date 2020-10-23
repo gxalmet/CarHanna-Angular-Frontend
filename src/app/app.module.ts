@@ -26,6 +26,7 @@ import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { ChildProjectsComponent } from './components/child-projects/child-projects.component';
 import { CollegueComponent } from './components/collegue/collegue.component';
+import { MessageComponent } from './components/message/message.component'
 
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
@@ -49,7 +50,8 @@ import { environment } from '../environments/environment';
     MyTeamComponent,
     AgendaComponent,
     ChildProjectsComponent,
-    CollegueComponent
+    CollegueComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

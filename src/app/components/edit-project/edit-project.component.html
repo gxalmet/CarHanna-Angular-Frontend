@@ -2,13 +2,11 @@
 <div class="container">
     <div class="row">
         <div class='col-md-6 mx-auto'>
-            <div *ngIf="message" class="alert alert-warning" role="alert">
-                <h5>{{message}}</h5>
-            </div>
+
             <div *ngIf="title" class="card-header">
                 <h4>{{title}}</h4>
             </div>
-
+            <app-message *ngIf="message" [messageString]="message"></app-message>
 
 
             <div class="card-body" *ngIf="teamList.length>0">

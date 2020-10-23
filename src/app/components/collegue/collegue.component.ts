@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Team } from '../../models/team';
 import { TeamService } from '../../services/team.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { exitCodeFromResult } from '@angular/compiler-cli';
 
 @Component({
   selector: 'app-collegue',
@@ -38,12 +39,14 @@ export class CollegueComponent implements OnInit {
   onSave(){
     var ok = true;
     this.team.collegues.map(col=>{
-      if(col.email == this.item.email){
+
+      if(col.email.localeCompare(this.item.email) == 0 && ok == true){
         this.message = 'Collegue alredy in your team.';
         ok = false;
       }
     });
-    if(ok = true){
+    
+    if(ok == true){
       this.team.collegues.push(this.item);
       this._teamService.updateTeam(this.team).subscribe(
         teamSave=>{

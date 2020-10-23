@@ -7,7 +7,7 @@
         <div class='col-md-6 mx-auto'>
 
             <h4 *ngIf="title">{{title}}</h4>
-            <h5 *ngIf="message">{{message}}</h5>
+            <app-message *ngIf="message" [messageString]="message"></app-message>
 
             <div class="card-body">
                 <!-- <form #CollegueCreateForm="ngForm" class="form-text"> -->

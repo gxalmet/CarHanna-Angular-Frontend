@@ -7,13 +7,7 @@
         </h2>
     </div>
 </section>
-<section class="container-xl" *ngIf="message">
-    <div class="container-fluid alert alert-danger" role="alert">
-        <h3>
-            {{message}}
-        </h3>
-    </div>
-</section>
+<app-message *ngIf="message" [messageString]="message"></app-message>
 <section class="container-xl ">
     <h6 *ngIf="dateBeginCal && dateEndCal">Agenda from {{dateBeginCal.toDateString()}} to {{dateEndCal.toDateString()}}</h6>
     <div class=" table ">

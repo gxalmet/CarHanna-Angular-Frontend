@@ -8,13 +8,7 @@
                 </h4>
             </div>
         </section>
-        <section class="container-xl" *ngIf="message">
-            <div class="container-fluid alert alert-primary" role="alert">
-                <h3>
-                    {{message}}
-                </h3>
-            </div>
-        </section>
+        <app-message *ngIf="message" [messageString]="message"></app-message>
     </div>
     <section class="container-xl ">
         <div class="container-fluid ">

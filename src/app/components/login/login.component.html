@@ -9,13 +9,7 @@
                 </h2>
             </div>
         </section>
-        <section class="container-xl" *ngIf="message">
-            <div class="container-fluid alert alert-danger" role="alert">
-                <h3>
-                    {{message}}
-                </h3>
-            </div>
-        </section>
+        <app-message *ngIf="message" [messageString]="message"></app-message>
         <section class="container-sm">
             <div class="container-fluid ">
                 <form #userCreateForm="ngForm" (ngSubmit)="onLogin(userCreateForm)" class="form-signin">
