@@ -24,6 +24,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
+import { ChildProjectsComponent } from './components/child-projects/child-projects.component';
+import { CollegueComponent } from './components/collegue/collegue.component';
 
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
@@ -45,7 +47,9 @@ import { environment } from '../environments/environment';
     CalendarComponent,
     EditProjectComponent,
     MyTeamComponent,
-    AgendaComponent
+    AgendaComponent,
+    ChildProjectsComponent,
+    CollegueComponent
   ],
   imports: [
     BrowserModule,

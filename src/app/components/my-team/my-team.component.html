@@ -5,41 +5,42 @@
 <div class="container">
     <div class="row">
         <div class='col-md-6 mx-auto'>
-            <div class="card-header">
-                <h4 *ngIf="title">{{title}}</h4>
-                <h5 *ngIf="message">{{message}}</h5>
-            </div>
+
+            <h4 *ngIf="title">{{title}}</h4>
+            <h5 *ngIf="message">{{message}}</h5>
+
             <div class="card-body">
-                <form #CollegueCreateForm="ngForm" class="form-text">
-                    <!-- <div class="form-group align-center">
+                <!-- <form #CollegueCreateForm="ngForm" class="form-text"> -->
+                <!-- <div class="form-group align-center">
                         <label for="name">Id</label>
                         <input type="text" class="form-control" name="id" #id="ngModel" [(ngModel)]="team._id" *ngIf="team" />
                     </div> -->
-                    <p>
-                        <button type="submit" class="btn btn-secondary btn-sm btn-block" (click)="onCancel()">Cancel</button>
-                    </p>
-                </form>
+                <p>
+                    <button type="submit" class="btn btn-secondary btn-sm btn-block" (click)="onCancel()">Cancel</button>
+                </p>
+                <!-- </form> -->
             </div>
         </div>
     </div>
 </div>
 
 <!-- Editable table -->
-<div class="card">
+<section class="container-xl ">
+    <!-- <div class="card">
     <h5 class="card-header text-center font-weight-bold text-uppercase py-4">My collegues</h5>
     <div class="card-body">
         <div id="table" class="table-editable">
             <span class="table-add float-left">
                 <a class="text-success" (click)="add()">
                     
-                    <!-- <mat-icon fas icon="plus" size="2x"></mat-icon> -->
+                    
                     <mat-icon>group_add</mat-icon>
                 </a>
             </span>
             <span class="table-add float-right ">
                 <a class="text-success" (click)="save(team)">
                     
-                    <!-- <mat-icon fas icon="plus" size="2x"></mat-icon> -->
+                    
                     <mat-icon>save</mat-icon>
                 </a>
             </span>
@@ -92,5 +93,36 @@
             </table>
         </div>
     </div>
-</div>
+</div> -->
+    <h5>My collegues</h5>
+    <p>
+        <button type="submit" class="btn btn-primary btn-sm btn-block" (click)="addCollegue()">Add Collegue</button>
+    </p>
+    <table id="project" class="table table-striped" *ngIf="team">
+        <tr>
+            <th scope="col" *ngFor="let col of columns">
+                {{col}}
+            </th>
+        </tr>
+        <tr *ngFor="let collegue of team.collegues; let id = index">
+            <td>{{collegue.email}}</td>
+            <td>{{collegue.person.firstname}}</td>
+            <td>{{collegue.person.lastname}}</td>
+            <td>
+                <a *ngIf="!(collegue.user_id_col)" class="text-success">
+                    <mat-icon>unpublished</mat-icon>
+                </a>
+                <a *ngIf="(collegue.user_id_col)" class="text-success">
+                    <mat-icon>verified_user</mat-icon>
+                </a>
+            </td>
+            <td>
+                <span *ngIf="collegue.user_id_col!==team.user_id" class="table-remove">
+                        <button type="button" mdbBtn color="danger" rounded="false" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+                </span>
+            </td>
+        </tr>
+
+    </table>
+</section>
 <!-- Editable table -->

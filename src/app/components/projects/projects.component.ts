@@ -51,7 +51,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.statusList);
+    
 
     this.title = 'Welcome to your project management!!'
     

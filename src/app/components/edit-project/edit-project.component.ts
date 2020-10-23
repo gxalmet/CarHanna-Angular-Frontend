@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 import { Project } from '../../models/project';
 import { Team } from '../../models/team';
 
-import { UserService } from '../../services/user.service';
+//import { UserService } from '../../services/user.service';
 import { ProjectService } from '../../services/project.service';
 import { TeamService } from '../../services/team.service';
 
@@ -13,19 +13,21 @@ import { Global} from '../../services/global';
 // import { FormControl, Validators  } from '@angular/forms';
 // import * as moment from 'moment/moment';
 // import { Subscription } from 'rxjs';
+//import { ChildProjectsComponent } from '../child-projects/child-projects.component';
 
 export interface ListDropbox {
   id: string;
   name: string;
 }
 
-
-
 @Component({
   selector: 'app-edit-project',
   templateUrl: './edit-project.component.html',
   styleUrls: ['./edit-project.component.css'],
-  providers: [ UserService, ProjectService, TeamService ]
+  providers: [ 
+//    UserService, 
+    ProjectService, 
+    TeamService ]
 })
 export class EditProjectComponent implements OnInit
 // , OnDestroy 

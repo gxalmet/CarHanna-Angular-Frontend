@@ -1,0 +1,19 @@
+<app-main-nav></app-main-nav>
+<section>
+    <h4>Add collegue</h4>
+</section>
+
+<div class="card-body" *ngIf="item">
+    <form #collegueCreateForm="ngForm" class="form-text">
+
+        <div class="form-group align-center ">
+            <label for="name" class="col-form-label-sm">E-mail</label>
+            <input type="email" class="form-control" placeholder="Project name" name="name" #name="ngModel" [(ngModel)]="item.email" />
+        </div>
+
+        <p>
+            <!-- <button type="submit" class="btn btn-primary btn-sm btn-block" (click)="checkUser()">Check User</button> -->
+            <button type="submit" class="btn btn-secondary btn-sm btn-block" (click)="onSave()">Confirm</button>
+        </p>
+    </form>
+</div>

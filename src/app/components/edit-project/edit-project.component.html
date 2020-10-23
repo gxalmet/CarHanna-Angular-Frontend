@@ -84,8 +84,11 @@
 
 </section>
 <section class="container-xl ">
+    <app-child-projects *ngIf="project" [projectParent]="project">
+    </app-child-projects>
 
-    <table id="project" class="table table-striped">
+
+    <!-- <table id="project" class="table table-striped">
         <tr>
             <th scope="col" *ngFor="let col of columns">
                 {{col}}
@@ -110,6 +113,6 @@
             </td>
         </tr>
 
-    </table>
+    </table> -->
 
 </section>

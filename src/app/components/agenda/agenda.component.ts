@@ -92,26 +92,27 @@ export class AgendaComponent implements OnInit {
       }
     )
 
-    this._projectService.getProjects(null).subscribe(
-      responseP =>{
+    // this._projectService.getProjects(null).subscribe(
+    //   responseP =>{
                 
-        this.projectsTree = this.projectsUse = responseP.projects;
+    //     this.projectsTree = this.projectsUse = responseP.projects;
         
-        this.getBeginDate();
-        this.getEndDate();
+    //     this.getBeginDate();
+    //     this.getEndDate();
         
-        this.dateArray= this.getDates(this.dateBeginCal, this.dateEndCal);
-        this.colorProjects = this.getDatesProjects(this.dateBeginCal, this.dateEndCal);
-        this.length = this.getLengthDynamic();
+    //     this.dateArray= this.getDates(this.dateBeginCal, this.dateEndCal);
+    //     this.colorProjects = this.getDatesProjects(this.dateBeginCal, this.dateEndCal);
+    //     this.length = this.getLengthDynamic();
         
         
-      },
-      errorP => {
+    //   },
+    //   errorP => {
         
   
         
-      }
-    )
+    //   }
+    //)
+    
   }
   getBeginDate(){
     

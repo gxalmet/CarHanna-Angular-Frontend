@@ -1,0 +1,26 @@
+<table id="project" class="table table-striped">
+    <tr>
+        <th scope="col" *ngFor="let col of columns">
+            {{col}}
+        </th>
+    </tr>
+    <tr *ngFor="let projectChild of projectsChild">
+        <td>
+            <button type="button" class="btn btn-light my-0 my-sm-0" (click)="onNavigate(projectChild)">{{projectChild["name"]}}</button>
+
+        </td>
+        <td>
+            {{projectChild["description"]}}
+        </td>
+        <td>
+            {{projectChild.check_date["begin_date"].toDateString()}}
+        </td>
+        <td>
+            {{projectChild.check_date["end_date"].toDateString()}}
+        </td>
+        <td>
+            {{projectChild["status"]}}
+        </td>
+    </tr>
+
+</table>

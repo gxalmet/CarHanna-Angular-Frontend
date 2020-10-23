@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from '../../models/team';
-
-
-
 import { TeamService } from '../../services/team.service';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -17,18 +14,22 @@ export class MyTeamComponent implements OnInit {
   public message: string;
   public team: Team;
   public editField: string;
+  public columns: String[];
   //public collegue: Team;
 
   constructor(
 
     private _teamService: TeamService,
   	private _router: Router,
-  	private _route: ActivatedRoute) {
+    private _route: ActivatedRoute
+    ) {
 
    }
 
   ngOnInit() {
-    
+
+    this.columns = ["E-mail","First Name","Lastname", "User", "Remove"];
+
     this._teamService.getTeamByUser().subscribe(
       result=>{
         this.team = result.team[0];
@@ -77,6 +78,7 @@ export class MyTeamComponent implements OnInit {
   remove(id: any) {
     //this.collegue.collegues.push(this.team.collegues[id]);
     this.team.collegues.splice(id, 1);
+    this.save(this.team);
   }
 
   add() {
@@ -106,5 +108,8 @@ export class MyTeamComponent implements OnInit {
         this.message = errorSave.error.message;
       }
     )
+  }
+  addCollegue(){
+    this._router.navigate(['collegue']);
   }
 }

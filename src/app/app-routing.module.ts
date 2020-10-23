@@ -13,6 +13,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
 import { MyTeamComponent } from './components/my-team/my-team.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
+import { CollegueComponent } from './components/collegue/collegue.component';
+
 
 // export const resolver = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
 //   console.log('hero');
@@ -36,6 +38,7 @@ const routes: Routes = [
             return true;
           }},
   {path: 'myteam', component: MyTeamComponent},
+  {path: 'collegue', component: CollegueComponent},
   {path: '**', component: ErrorComponent},
 ];
 
